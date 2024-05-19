@@ -1,0 +1,21 @@
+{
+  "name": "heartlab-coding-test",
+  "description": "HeartLab Coding Test",
+  "version": "1.0.0",
+  "author": "HeartLab Ltd.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "format": "prettier --write \"**/*.ts\"",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "luxon": "^3.4.4",
+    "prettier": "^3.2.4"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.4.2",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
