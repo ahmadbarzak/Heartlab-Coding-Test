@@ -94,11 +94,18 @@ export function getOpenClinics(
   parsedClinicOpeningHours: ParsedClinicOpeningHours,
   queryTime: DateTime
 ): string[] {
-  const queryDay = queryTime.toFormat("ccc");
-  const possibleClinics = parsedClinicOpeningHours[queryDay] || {};
-  const openClinics = Object.keys(possibleClinics).filter((clinic) =>
-    possibleClinics[clinic].some((interval) => interval.contains(queryTime))
-  );
+  const clinics: string[] = [];
+  const queryDay: string = queryTime.toFormat("ccc");
+  const possibleClinics = parsedClinicOpeningHours[queryDay];
 
-  return openClinics.sort();
+  for (const clinic in possibleClinics) {
+    const intervals: Interval[] = possibleClinics[clinic];
+    for (const interval of intervals) {
+      if (interval.contains(queryTime) && !clinics.includes(clinic)) {
+        clinics.push(clinic);
+      }
+    }
+  }
+
+  return clinics;
 }
